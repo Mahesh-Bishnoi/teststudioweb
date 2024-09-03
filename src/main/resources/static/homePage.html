@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>
+            Playwright test studio web
+        </title>
+    </head>
+    <body>
+        <form method="POST" onsubmit="startRecorder(event)">
+            <label for="fileName">File Name :</label>
+            <input id="fileName" name="fileName" type="text"/>
+            <input type="submit" value="Start"/>
+        </form>
+        <script>
+                async function startRecorder(event){
+                event.preventDefault();
+                let fileNameValue = document.getElementById("fileName").value;
+                const response = await fetch("http://localhost:8080/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ fileName: fileNameValue }),
+                });
+            }
+        </script>
+    </body>
+</html>
